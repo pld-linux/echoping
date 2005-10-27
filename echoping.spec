@@ -1,4 +1,5 @@
 Summary:	Non-suid ping
+Summary(pl):	ping bez suida
 Name:		echoping
 Version:	6.0
 Release:	0.BETA.0.1
@@ -14,7 +15,14 @@ BuildRequires:	popt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-"echoping" is a small program to test (approximatively) performances of a remote host by sending it TCP "echo" (or other protocol, such as HTTP) packets.
+"echoping" is a small program to test (approximatively) performances
+of a remote host by sending it TCP "echo" (or other protocol, such as
+HTTP) packets.
+
+%description -l pl
+echoping to ma³y program do sprawdzania (przybli¿onej) wydajno¶ci
+zdalnego hosta poprzez wysy³anie pakietów TCP "echo" (lub innego
+protoko³u, jak np. HTTP).
 
 %prep
 %setup -q -n %{name}-%{version}-BETA
