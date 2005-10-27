@@ -8,9 +8,9 @@ Group:		Networking/Admin
 Source0:	ftp://ftp.internatif.org/pub/unix/echoping/%{name}-%{version}-BETA.tar.gz
 # Source0-md5:	a8d10ec94a6dfc42bd978a1e99d00efa
 URL:		http://echoping.sourceforge.net/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	bind-devel
+BuildRequires:	libidn-devel
+BuildRequires:	openldap-devel
+BuildRequires:	postgresql-devel
 BuildRequires:	popt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -28,7 +28,8 @@ protoko³u, jak np. HTTP).
 %setup -q -n %{name}-%{version}-BETA
 
 %build
-%configure
+%configure \
+	--disable-static
 %{__make}
 
 %install
@@ -37,11 +38,15 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/echoping/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-#%doc ChangeLog README
-#%attr(755,root,root) %{_bindir}/*
-#%{_mandir}/man*/*
+%doc AUTHORS ChangeLog DETAILS PLUGINS README TODO
+%attr(755,root,root) %{_bindir}/echoping*
+%dir %{_libdir}/echoping
+%attr(755,root,root) %{_libdir}/echoping/*.so*
+%{_mandir}/man1/echoping*
