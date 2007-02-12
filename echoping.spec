@@ -1,5 +1,5 @@
 Summary:	Non-suid ping
-Summary(pl):	ping bez suida
+Summary(pl.UTF-8):   ping bez suida
 Name:		echoping
 Version:	6.0
 Release:	0.BETA.0.1
@@ -19,10 +19,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 of a remote host by sending it TCP "echo" (or other protocol, such as
 HTTP) packets.
 
-%description -l pl
-echoping to ma≥y program do sprawdzania (przybliøonej) wydajno∂ci
-zdalnego hosta poprzez wysy≥anie pakietÛw TCP "echo" (lub innego
-protoko≥u, jak np. HTTP).
+%description -l pl.UTF-8
+echoping to ma≈Çy program do sprawdzania (przybli≈ºonej) wydajno≈õci
+zdalnego hosta poprzez wysy≈Çanie pakiet√≥w TCP "echo" (lub innego
+protoko≈Çu, jak np. HTTP).
 
 %prep
 %setup -q -n %{name}-%{version}-BETA
