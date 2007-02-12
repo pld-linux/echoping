@@ -1,5 +1,5 @@
 Summary:	Non-suid ping
-Summary(pl.UTF-8):   ping bez suida
+Summary(pl.UTF-8):	ping bez suida
 Name:		echoping
 Version:	6.0
 Release:	0.BETA.0.1
