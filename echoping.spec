@@ -9,7 +9,7 @@ Source0:	ftp://ftp.internatif.org/pub/unix/echoping/%{name}-%{version}-BETA.tar.
 # Source0-md5:	a8d10ec94a6dfc42bd978a1e99d00efa
 URL:		http://echoping.sourceforge.net/
 BuildRequires:	libidn-devel
-BuildRequires:	openldap-devel
+BuildRequires:	openldap-devel >= 2.4.6
 BuildRequires:	postgresql-devel
 BuildRequires:	popt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
