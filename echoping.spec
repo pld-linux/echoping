@@ -1,15 +1,16 @@
 Summary:	Non-suid ping
 Summary(pl.UTF-8):	ping bez suida
 Name:		echoping
-Version:	6.0
-Release:	0.BETA.0.1
+Version:	6.0.2
+Release:	1
 License:	GPL v2
 Group:		Networking/Admin
-Source0:	ftp://ftp.internatif.org/pub/unix/echoping/%{name}-%{version}-BETA.tar.gz
-# Source0-md5:	a8d10ec94a6dfc42bd978a1e99d00efa
+Source0:	http://dl.sourceforge.net/echoping/%{name}-%{version}.tar.gz
+# Source0-md5:	991478532b56ab3b6f46ea9fa332626f
 URL:		http://echoping.sourceforge.net/
 BuildRequires:	libidn-devel
 BuildRequires:	openldap-devel >= 2.4.6
+BuildRequires:	openssl-devel
 BuildRequires:	postgresql-devel
 BuildRequires:	popt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -25,10 +26,12 @@ zdalnego hosta poprzez wysyłanie pakietów TCP "echo" (lub innego
 protokołu, jak np. HTTP).
 
 %prep
-%setup -q -n %{name}-%{version}-BETA
+%setup -q -n %{name}-%{version}
 
 %build
 %configure \
+	--with-ssl \
+	--without-gnutls \
 	--disable-static
 %{__make}
 
