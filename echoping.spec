@@ -26,7 +26,7 @@ zdalnego hosta poprzez wysyłanie pakietów TCP "echo" (lub innego
 protokołu, jak np. HTTP).
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 %configure \
