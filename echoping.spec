@@ -2,7 +2,7 @@ Summary:	Non-suid ping
 Summary(pl.UTF-8):	ping bez suida
 Name:		echoping
 Version:	6.0.2
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Networking/Admin
 Source0:	http://dl.sourceforge.net/echoping/%{name}-%{version}.tar.gz
@@ -83,6 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/echoping/postgresql.so
 %{_libdir}/echoping/random.so
 %{_libdir}/echoping/whois.so
+%dir %{_includedir}/echoping
 %{_includedir}/echoping/*.h
 
 %files libs
