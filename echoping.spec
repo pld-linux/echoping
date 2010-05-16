@@ -16,6 +16,8 @@ BuildRequires:	postgresql-devel
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%undefine	__cxx
+
 %description
 "echoping" is a small program to test (approximatively) performances
 of a remote host by sending it TCP "echo" (or other protocol, such as
