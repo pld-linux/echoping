@@ -2,7 +2,7 @@ Summary:	Non-suid ping
 Summary(pl.UTF-8):	ping bez suida
 Name:		echoping
 Version:	6.0.2
-Release:	5
+Release:	6
 License:	GPL v2
 Group:		Networking/Admin
 Source0:	http://dl.sourceforge.net/echoping/%{name}-%{version}.tar.gz
@@ -17,6 +17,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %undefine	__cxx
+%define		skip_post_check_so	dns.so.0.0.0 ldap.so.0.0.0 postgresql.so.0.0.0 whois.so.0.0.0
 
 %description
 "echoping" is a small program to test (approximatively) performances
