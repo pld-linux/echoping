@@ -1,0 +1,134 @@
+--- echoping-6.0.2/configure-common.ac~	2007-04-09 21:52:54.000000000 +0200
++++ echoping-6.0.2/configure-common.ac	2012-08-20 22:39:19.663323545 +0200
+@@ -1,5 +1,4 @@
+ dnl $Id: configure-common.ac 410 2007-04-09 19:49:29Z bortz $
+-AC_INIT(echoping, 6.0.2, bortz@users.sourceforge.net)
+ AC_CANONICAL_HOST
+ AC_PROG_CC(cc gcc)
+ AC_LIBTOOL_DLOPEN
+diff -ur echoping-6.0.2/configure.ac echoping-6.0.2-avoid-version/configure.ac
+--- echoping-6.0.2/configure.ac	2007-04-05 14:40:49.000000000 +0200
++++ echoping-6.0.2-avoid-version/configure.ac	2012-08-20 22:35:50.029991729 +0200
+@@ -1,6 +1,7 @@
+ dnl $Id: configure.ac 401 2007-04-05 12:26:38Z bortz $
+ 
+ dnl Process this file with autoconf to produce a configure script.
++AC_INIT(echoping, 6.0.2, bortz@users.sourceforge.net)
+ 
+ m4_include(configure-common.ac)
+ AM_INIT_AUTOMAKE
+diff -ur echoping-6.0.2/plugins/configure.ac echoping-6.0.2-avoid-version/plugins/configure.ac
+--- echoping-6.0.2/plugins/configure.ac	2007-04-09 21:27:15.000000000 +0200
++++ echoping-6.0.2-avoid-version/plugins/configure.ac	2012-08-20 22:36:18.866658187 +0200
+@@ -1,4 +1,5 @@
+ dnl $Id: configure.ac 407 2007-04-09 19:20:13Z bortz $
++AC_INIT(echoping, 6.0.2, bortz@users.sourceforge.net)
+ 
+ m4_include(../configure-common.ac)
+ AM_INIT_AUTOMAKE(foreign)
+diff -ur echoping-6.0.2/plugins/dns/configure.ac echoping-6.0.2-avoid-version/plugins/dns/configure.ac
+--- echoping-6.0.2/plugins/dns/configure.ac	2007-04-05 14:40:48.000000000 +0200
++++ echoping-6.0.2-avoid-version/plugins/dns/configure.ac	2012-08-20 22:35:56.929991680 +0200
+@@ -1,4 +1,5 @@
+ dnl $Id: configure.ac 377 2007-03-12 20:48:05Z bortz $
++AC_INIT(echoping, 6.0.2, bortz@users.sourceforge.net)
+ 
+ m4_include([../../configure-common.ac])
+ AM_INIT_AUTOMAKE(foreign)
+diff -ur echoping-6.0.2/plugins/dns/Makefile.am echoping-6.0.2-avoid-version/plugins/dns/Makefile.am
+--- echoping-6.0.2/plugins/dns/Makefile.am	2007-04-05 14:40:48.000000000 +0200
++++ echoping-6.0.2-avoid-version/plugins/dns/Makefile.am	2012-08-20 21:49:39.688195883 +0200
+@@ -1,7 +1,7 @@
+ if DNSBUILD
+ pkglib_LTLIBRARIES = dns.la
+ dns_la_SOURCES = dns.c
+-dns_la_LDFLAGS = -module
++dns_la_LDFLAGS = -module -avoid-version
+ endif
+ 
+ man_MANS = echoping_dns.1
+diff -ur echoping-6.0.2/plugins/ldap/configure.ac echoping-6.0.2-avoid-version/plugins/ldap/configure.ac
+--- echoping-6.0.2/plugins/ldap/configure.ac	2007-04-05 14:40:48.000000000 +0200
++++ echoping-6.0.2-avoid-version/plugins/ldap/configure.ac	2012-08-20 22:36:02.746658304 +0200
+@@ -1,4 +1,5 @@
+ dnl $Id: configure.ac 377 2007-03-12 20:48:05Z bortz $
++AC_INIT(echoping, 6.0.2, bortz@users.sourceforge.net)
+ 
+ m4_include([../../configure-common.ac])
+ AM_INIT_AUTOMAKE(foreign)
+diff -ur echoping-6.0.2/plugins/ldap/Makefile.am echoping-6.0.2-avoid-version/plugins/ldap/Makefile.am
+--- echoping-6.0.2/plugins/ldap/Makefile.am	2007-04-05 14:40:48.000000000 +0200
++++ echoping-6.0.2-avoid-version/plugins/ldap/Makefile.am	2012-08-20 21:49:46.858195831 +0200
+@@ -1,7 +1,7 @@
+ if LDAPBUILD
+ pkglib_LTLIBRARIES = ldap.la
+ ldap_la_SOURCES = ldap.c
+-ldap_la_LDFLAGS = -module
++ldap_la_LDFLAGS = -module -avoid-version
+ endif
+ man_MANS = echoping_ldap.1
+ 
+diff -ur echoping-6.0.2/plugins/postgresql/configure.ac echoping-6.0.2-avoid-version/plugins/postgresql/configure.ac
+--- echoping-6.0.2/plugins/postgresql/configure.ac	2007-04-05 14:40:48.000000000 +0200
++++ echoping-6.0.2-avoid-version/plugins/postgresql/configure.ac	2012-08-20 22:36:06.306658278 +0200
+@@ -1,4 +1,5 @@
+ dnl $Id: configure.ac 377 2007-03-12 20:48:05Z bortz $
++AC_INIT(echoping, 6.0.2, bortz@users.sourceforge.net)
+ 
+ m4_include([../../configure-common.ac])
+ AM_INIT_AUTOMAKE(foreign)
+diff -ur echoping-6.0.2/plugins/postgresql/Makefile.am echoping-6.0.2-avoid-version/plugins/postgresql/Makefile.am
+--- echoping-6.0.2/plugins/postgresql/Makefile.am	2007-04-05 14:40:48.000000000 +0200
++++ echoping-6.0.2-avoid-version/plugins/postgresql/Makefile.am	2012-08-20 21:49:52.708195789 +0200
+@@ -1,7 +1,7 @@
+ if PGSQLBUILD
+ pkglib_LTLIBRARIES = postgresql.la
+ postgresql_la_SOURCES = postgresql.c
+-postgresql_la_LDFLAGS = -module
++postgresql_la_LDFLAGS = -module -avoid-version
+ endif
+ man_MANS = echoping_postgresql.1
+ 
+diff -ur echoping-6.0.2/plugins/random/configure.ac echoping-6.0.2-avoid-version/plugins/random/configure.ac
+--- echoping-6.0.2/plugins/random/configure.ac	2007-04-05 14:40:48.000000000 +0200
++++ echoping-6.0.2-avoid-version/plugins/random/configure.ac	2012-08-20 22:36:10.193324918 +0200
+@@ -1,4 +1,5 @@
+ dnl $Id: configure.ac 377 2007-03-12 20:48:05Z bortz $
++AC_INIT(echoping, 6.0.2, bortz@users.sourceforge.net)
+ 
+ m4_include(../../configure-common.ac)
+ AM_INIT_AUTOMAKE(foreign)
+diff -ur echoping-6.0.2/plugins/random/Makefile.am echoping-6.0.2-avoid-version/plugins/random/Makefile.am
+--- echoping-6.0.2/plugins/random/Makefile.am	2007-04-05 14:40:48.000000000 +0200
++++ echoping-6.0.2-avoid-version/plugins/random/Makefile.am	2012-08-20 21:49:57.104862424 +0200
+@@ -1,6 +1,6 @@
+ pkglib_LTLIBRARIES = random.la
+ random_la_SOURCES = random.c
+-random_la_LDFLAGS = -module
++random_la_LDFLAGS = -module -avoid-version
+ man_MANS = echoping_random.1
+ 
+-EXTRA_DIST = $(man_MANS)
+\ No newline at end of file
++EXTRA_DIST = $(man_MANS)
+diff -ur echoping-6.0.2/plugins/whois/configure.ac echoping-6.0.2-avoid-version/plugins/whois/configure.ac
+--- echoping-6.0.2/plugins/whois/configure.ac	2007-04-05 14:40:48.000000000 +0200
++++ echoping-6.0.2-avoid-version/plugins/whois/configure.ac	2012-08-20 22:36:15.036658216 +0200
+@@ -1,4 +1,5 @@
+ dnl $Id: configure.ac 377 2007-03-12 20:48:05Z bortz $
++AC_INIT(echoping, 6.0.2, bortz@users.sourceforge.net)
+ 
+ m4_include([../../configure-common.ac])
+ AM_INIT_AUTOMAKE(foreign)
+diff -ur echoping-6.0.2/plugins/whois/Makefile.am echoping-6.0.2-avoid-version/plugins/whois/Makefile.am
+--- echoping-6.0.2/plugins/whois/Makefile.am	2007-04-05 14:40:48.000000000 +0200
++++ echoping-6.0.2-avoid-version/plugins/whois/Makefile.am	2012-08-20 21:50:01.441529059 +0200
+@@ -2,7 +2,7 @@
+ 
+ pkglib_LTLIBRARIES = whois.la
+ whois_la_SOURCES = whois.c
+-whois_la_LDFLAGS = -module
++whois_la_LDFLAGS = -module -avoid-version
+ man_MANS = echoping_whois.1
+ 
+ EXTRA_DIST = $(man_MANS) test.sh
