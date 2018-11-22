@@ -2,7 +2,7 @@ Summary:	Non-suid ping
 Summary(pl.UTF-8):	ping bez suida
 Name:		echoping
 Version:	6.0.2
-Release:	8
+Release:	9
 License:	GPL v2
 Group:		Networking/Admin
 Source0:	http://dl.sourceforge.net/echoping/%{name}-%{version}.tar.gz
