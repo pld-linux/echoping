@@ -2,13 +2,14 @@ Summary:	Non-suid ping
 Summary(pl.UTF-8):	ping bez suida
 Name:		echoping
 Version:	6.0.2
-Release:	9
+Release:	10
 License:	GPL v2
 Group:		Networking/Admin
 Source0:	http://dl.sourceforge.net/echoping/%{name}-%{version}.tar.gz
 # Source0-md5:	991478532b56ab3b6f46ea9fa332626f
 Patch0:		echoping-no-versioned-modules.patch
 Patch1:		echoping-so.patch
+Patch2:		gcc10.patch
 URL:		http://echoping.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -47,6 +48,7 @@ Pliki nagłówkowe echoping library.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}

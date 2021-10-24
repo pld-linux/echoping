@@ -1,0 +1,114 @@
+diff -ur echoping-6.0.2/echoping.c echoping-6.0.2-gcc10/echoping.c
+--- echoping-6.0.2/echoping.c	2021-10-24 18:36:22.691776245 +0200
++++ echoping-6.0.2-gcc10/echoping.c	2021-10-24 18:30:28.374582381 +0200
+@@ -38,6 +38,20 @@
+ struct timeval  good_results[MAX_ITERATIONS];
+ extern int      tvcmp();
+ 
++
++boolean timeout_flag;
++init_f plugin_init;
++start_f plugin_start;
++start_raw_f plugin_raw_start;
++execute_f plugin_execute;
++terminate_f plugin_terminate;
++struct timeval null_timeval;
++struct timeval max_timeval;
++char *server;
++#ifdef LIBIDN
++char *locale_server, *ace_server, *utf8_server;
++#endif
++
+ int
+ main(argc, argv)
+ 	int             argc;
+diff -ur echoping-6.0.2/echoping.h echoping-6.0.2-gcc10/echoping.h
+--- echoping-6.0.2/echoping.h	2007-04-05 14:40:49.000000000 +0200
++++ echoping-6.0.2-gcc10/echoping.h	2021-10-24 18:30:27.867916968 +0200
+@@ -121,7 +121,7 @@
+   struct timeval timevalue;
+ };
+ 
+-boolean timeout_flag;
++extern boolean timeout_flag;
+ struct echoping_struct
+ {
+   boolean udp;			/* Use the UDP protocol (TCP is the default) */
+@@ -136,21 +136,21 @@
+ /* Initializes the plugin with its arguments. Returns the port name or number or NULL if the plugin wants to use the raw interface. */
+ typedef char *(*init_f) (const int argc, const char **argv,
+ 			 const echoping_options global_options);
+-init_f plugin_init;
++extern init_f plugin_init;
+ typedef void (*start_f) (struct addrinfo *);
+-start_f plugin_start;
++extern start_f plugin_start;
+ typedef void (*start_raw_f) ();
+-start_raw_f plugin_raw_start;
++extern start_raw_f plugin_raw_start;
+ typedef int (*execute_f) ();
+-execute_f plugin_execute;
++extern execute_f plugin_execute;
+ typedef void (*terminate_f) ();
+-terminate_f plugin_terminate;
++extern terminate_f plugin_terminate;
+ #endif
+ 
+ #endif
+ 
+-struct timeval null_timeval;
+-struct timeval max_timeval;
++extern struct timeval null_timeval;
++extern struct timeval max_timeval;
+ 
+ #define	ECHO_TCP_PORT	"echo"
+ #define	DISCARD_TCP_PORT	"discard"
+@@ -173,9 +173,9 @@
+ 
+ #define CHARGENERATED " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefg";
+ 
+-char *server;
++extern char *server;
+ #ifdef LIBIDN
+-char *locale_server, *ace_server, *utf8_server;
++extern char *locale_server, *ace_server, *utf8_server;
+ #endif
+ 
+ /* My functions */
+diff -ur echoping-6.0.2/http.c echoping-6.0.2-gcc10/http.c
+--- echoping-6.0.2/http.c	2007-04-05 14:40:49.000000000 +0200
++++ echoping-6.0.2-gcc10/http.c	2021-10-24 18:32:37.545072776 +0200
+@@ -6,7 +6,6 @@
+ #include "HTParse.h"
+ 
+ 
+-char            big_recvline[MAXTOREAD];
+ 
+ char           *
+ make_http_sendline(char *url, char *host, int port, int nocache)
+@@ -73,6 +72,7 @@
+ 	char            reply_code;
+ 	int             first_line = TRUE;
+ 	short           body = FALSE;
++	char            big_recvline[MAXTOREAD];
+ #ifdef OPENSSL
+ 	int             sslcode;
+ #endif
+diff -ur echoping-6.0.2/smtp.c echoping-6.0.2-gcc10/smtp.c
+--- echoping-6.0.2/smtp.c	2007-04-05 14:40:49.000000000 +0200
++++ echoping-6.0.2-gcc10/smtp.c	2021-10-24 18:32:37.938409681 +0200
+@@ -8,13 +8,13 @@
+ 
+ #ifdef SMTP
+ 
+-char            big_recvline[MAXTOREAD];
+ 
+ int
+ smtp_read_response_from_server(FILE * fs)
+ {
+ 	int             nr;
+ 	int             i;
++	char            big_recvline[MAXTOREAD];
+ 
+ 	for (i = 0; i < MAXSMTPLINES; i++) {
+ 		nr = readline(fs, big_recvline, MAXTOREAD, TRUE);
