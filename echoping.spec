@@ -2,7 +2,7 @@ Summary:	Non-suid ping
 Summary(pl.UTF-8):	ping bez suida
 Name:		echoping
 Version:	6.0.2
-Release:	11
+Release:	12
 License:	GPL v2
 Group:		Networking/Admin
 Source0:	http://dl.sourceforge.net/echoping/%{name}-%{version}.tar.gz
@@ -10,6 +10,7 @@ Source0:	http://dl.sourceforge.net/echoping/%{name}-%{version}.tar.gz
 Patch0:		echoping-no-versioned-modules.patch
 Patch1:		echoping-so.patch
 Patch2:		gcc10.patch
+Patch3:		build.patch
 URL:		http://echoping.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -49,6 +50,7 @@ Pliki nagłówkowe echoping library.
 %patch -P0 -p1
 %patch -P1 -p1
 %patch -P2 -p1
+%patch -P3 -p1
 
 %build
 %{__libtoolize}
@@ -72,6 +74,7 @@ for d in dns ldap postgresql random whois ; do
 	cd -
 done
 %configure \
+	CFLAGS="-DLDAP_DEPRECATED=1 %{rpmcflags} -std=gnu17" \
 	--with-ssl \
 	--without-gnutls \
 	--disable-static

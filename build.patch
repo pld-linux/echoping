@@ -1,0 +1,11 @@
+--- echoping-6.0.2/echoping.h~	2025-11-24 19:32:40.000000000 +0100
++++ echoping-6.0.2/echoping.h	2025-11-24 19:33:02.035647267 +0100
+@@ -147,6 +147,8 @@ typedef void (*terminate_f) ();
+ extern terminate_f plugin_terminate;
+ #endif
+ 
++char *to_upper(char *);
++
+ #endif
+ 
+ extern struct timeval null_timeval;
